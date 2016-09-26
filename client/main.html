@@ -1,0 +1,38 @@
+<head>
+  <title>project1</title>
+</head>
+
+<body>
+
+	<div class="container">
+		<header>
+			<h1>Monthly resoult</h1>
+			
+			
+			
+			<form class="new-resolutions">
+				<input type="text" name="title" placeholder="A new resolution">
+			
+				<input type="submit" value="Submit">
+				
+			</form>
+		</header>
+	
+	
+	
+	<ul>
+		<!--loop, showing all objects-->
+		{{#each resolutions}}
+		
+		{{> resolution}}
+		{{/each}}
+	</ul>
+	</div>
+</body>
+
+<template name="resolution">
+	<!--using variable form js file -->
+	<li>{{title}}</li>
+</template>
+
+
