@@ -31,8 +31,14 @@
 </body>
 
 <template name="resolution">
+	
 	<!--using variable form js file -->
-	<li>{{title}}</li>
+			<!--#starting if / finish id, all change class -->
+	<li class="{{#if checked}}checked{{/if}}">
+	<input type="checkbox" checked="{{checked}}" class="toggle-checked">
+	<span class="text">{{title}}</span> 
+	<button class="delete">Delete</button>
+	</li>
 </template>
 
 

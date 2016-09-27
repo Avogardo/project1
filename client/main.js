@@ -16,16 +16,13 @@ import './main.html';
 	({
 		'submit .new-resolutions': function(event)
 		{
-			
 			var title = event.target.title.value;
 			
 			//adding st to database
 			Resolutions.insert
 			({
-				
 				title: title, 
 				createAt: new Date()
-				
 			});			
 			
 			//clearing writebox
@@ -33,5 +30,17 @@ import './main.html';
 			
 			//no re-frashing webpage
 			event.preventDefault();
+		}
+	});
+	//object
+	Template.resolution.events
+	({
+		'click .toggle-checked': function()
+		{												//doing opposide mark
+			Resolutions.update(this._id, {$set: {checked: !this.checked}});
+		},
+		'click .delete': function()
+		{
+			Resolutions.remove(this._id);
 		}
 	});
