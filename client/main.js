@@ -8,7 +8,19 @@ import './main.html';
 	({
 		resolutions: function()
 		{
-			return Resolutions.find();
+			if (Session.get('hideFinished'))
+			{
+				//$ne getting from mongoDB info about check stage
+				return Resolutions.find({checked: {$ne: true}});
+			}
+			else
+			{
+				return Resolutions.find();
+			}
+		},
+		hideFinished: function()
+		{
+			return Session.get('hideFinished');
 		}
 	});	
 
@@ -30,6 +42,11 @@ import './main.html';
 			
 			//no re-frashing webpage
 			event.preventDefault();
+		},
+		'change .hide-finished': function(event)
+		{
+			//creating new session variable, between '' theres a name, seckont is value that is set
+			Session.set('hideFinished', event.target.checked);
 		}
 	});
 	//object
