@@ -4,35 +4,28 @@ import './main.html';
 
   Resolutions = new Mongo.Collection('resolutions');
 
-  Template.body.helpers
-	({
-		resolutions: function()
-		{
-			if (Session.get('hideFinished'))
-			{
+  Template.body.helpers	({
+		resolutions: function()	{
+			if (Session.get('hideFinished')) {
 				//$ne getting from mongoDB info about check stage
 				return Resolutions.find({checked: {$ne: true}});
 			}
-			else
-			{
+			else {
 				return Resolutions.find();
 			}
 		},
-		hideFinished: function()
-		{
+
+		hideFinished: function() {
 			return Session.get('hideFinished');
 		}
 	});	
 
-	Template.body.events
-	({
-		'submit .new-resolutions': function(event)
-		{
+	Template.body.events ({
+		'submit .new-resolutions': function(event)	{
 			var title = event.target.title.value;
 			
 			//adding st to database
-			Resolutions.insert
-			({
+			Resolutions.insert ({
 				title: title, 
 				createAt: new Date()
 			});			
@@ -43,21 +36,24 @@ import './main.html';
 			//no re-frashing webpage
 			event.preventDefault();
 		},
-		'change .hide-finished': function(event)
-		{
+
+		'change .hide-finished': function(event) {
 			//creating new session variable, between '' theres a name, seckont is value that is set
 			Session.set('hideFinished', event.target.checked);
 		}
 	});
 	//object
-	Template.resolution.events
-	({
-		'click .toggle-checked': function()
-		{												//doing opposide mark
+	Template.resolution.events	({
+		'click .toggle-checked': function() {												//doing opposide mark
 			Resolutions.update(this._id, {$set: {checked: !this.checked}});
 		},
-		'click .delete': function()
-		{
+
+		'click .delete': function()	{
 			Resolutions.remove(this._id);
 		}
+	});
+
+	Accounts.ui.config({
+		//logining by username, no email
+		passwordSignupFields: "USERNAME_ONLY"
 	});
