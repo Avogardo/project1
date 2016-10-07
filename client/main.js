@@ -57,3 +57,7 @@ import './main.html';
 		//logining by username, no email
 		passwordSignupFields: "USERNAME_ONLY"
 	});
+
+
+
+	
