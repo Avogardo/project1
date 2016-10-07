@@ -25,10 +25,11 @@ import './main.html';
 			var title = event.target.title.value;
 			
 			//adding st to database
-			Resolutions.insert ({
+			/*Resolutions.insert ({
 				title: title, 
 				createAt: new Date()
-			});			
+			});	*/
+			Meteor.call("addResolution", title)
 			
 			//clearing writebox
 			event.target.title.value = "";
@@ -45,11 +46,11 @@ import './main.html';
 	//object
 	Template.resolution.events	({
 		'click .toggle-checked': function() {												//doing opposide mark
-			Resolutions.update(this._id, {$set: {checked: !this.checked}});
+			Meteor.call("updateResolution", this._id, !this.checked);
 		},
 
 		'click .delete': function()	{
-			Resolutions.remove(this._id);
+			Meteor.call("deleteResolution",this._id);
 		}
 	});
 
@@ -58,6 +59,3 @@ import './main.html';
 		passwordSignupFields: "USERNAME_ONLY"
 	});
 
-
-
-	
