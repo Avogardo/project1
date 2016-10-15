@@ -4,13 +4,14 @@ import './main.html';
 
   Resolutions = new Mongo.Collection('resolutions');
 
+  Meteor.subscribe("resolutions");
+
   Template.body.helpers	({
 		resolutions: function()	{
 			if (Session.get('hideFinished')) {
 				//$ne getting from mongoDB info about check stage
 				return Resolutions.find({checked: {$ne: true}});
-			}
-			else {
+			} else {
 				return Resolutions.find();
 			}
 		},

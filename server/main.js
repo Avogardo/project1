@@ -7,6 +7,11 @@ Meteor.startup(() => {
 	
 });
 
+// "name of collection"
+Meteor.publish("resolutions", function() {
+	return Resolutions.find();
+});
+
 Meteor.methods({
 	addResolution: function(title) {
 		Resolutions.insert ({
