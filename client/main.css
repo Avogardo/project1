@@ -58,7 +58,7 @@ ul {
 .delete {
   float: right;
   font-weight: bold;
-  background: #DE4F4F;
+  background: green;
   color: #FFF;
   font-size: 1em;
   padding: 5px 10px;

@@ -39,11 +39,18 @@
 	<!--using variable form js file -->
 			<!--#starting if / finish id, all change class -->
 	<li class="{{#if checked}}checked{{/if}}">
-	{{#if currentUser}}
+	{{#if isOwner}}
 	<input type="checkbox" checked="{{checked}}" class="toggle-checked">
+		<button class="toggle-private">
+			{{#if private}}
+				Private
+			{{else}}
+				Public
+			{{/if}}
+		</button>
 	{{/if}}
 	<span class="text">{{title}}</span> 
-	{{#if currentUser}}
+	{{#if isOwner}}
 	<button class="delete">Delete</button>
 	{{/if}}
 	</li>
